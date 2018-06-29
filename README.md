@@ -22,7 +22,7 @@ Run `composer require donbidon/tunneled-webhooks dev-master` or add following co
 and run `composer update`.
 
 ### Tunneling services
-[Download ngrok](https://ngrok.com/download) (and/or other tunneling services) and sign up in service.
+[Download ngrok](https://ngrok.com/download) (and/or other tunneling services), sign up in service, get auth token and run service once `/path/to/ngrok authtoken %YOUR_AUTH_TOKEN%`.
 
 ### Webhooks
 [Register Telegram bot](https://core.telegram.org/bots) and receive auth token.
