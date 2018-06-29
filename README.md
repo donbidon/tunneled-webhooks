@@ -2,8 +2,8 @@
 
 Runs tunneling service and registers temporary webhooks for workstation having no white IP by one command `/path/to/php bin/run.php /path/to/config.php`.
 
-* IImplemented tunneling services: [ngrok](https://ngrok.com/) ;
-* Implemented webhooks connectors: [Telegram](https://core.telegram.org/bots/api#getting-updates) ;
+* IImplemented tunneling services: [ngrok](https://ngrok.com/);
+* Implemented webhooks connectors: [Telegram](https://core.telegram.org/bots/api#setwebhook);
 * Implemented bots: Windbag.
 
 You can add your own tunneling services, register and handle your own webhooks. 
