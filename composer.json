@@ -1,0 +1,37 @@
+{
+    "name": "donbidon/tunneled-webhooks",
+    "type": "project",
+    "description": "Tunneled webhooks",
+    "homepage": "https://github.com/donbidon/tunneled-webhooks",
+    "keywords": ["php", "tunneling", "webhooks"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name":     "donbidon",
+            "homepage": "http://donbidon.rf.gd/"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable":      true,
+    "require": {
+        "donbidon/core":                 "^0.1",
+        "irazasyed/telegram-bot-sdk":    "^2.0",
+        "php-curl-class/php-curl-class": "dev-master",
+        "twilio/sdk":                     "^5.19"
+    },
+    "require-dev": {
+        "php":                  ">=5.7.1",
+        "donbidon/lib-phpunit": "dev-develop"
+    },
+    "autoload": {
+        "psr-4": {
+             "donbidon\\TunneledWebhooks\\": "src"
+         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+             "donbidon\\TunneledWebhooks\\": ["tests", "tests/src"],
+             "donbidon\\Core\\": ["vendor/donbidon/core/tests/src"]
+         }
+    }
+}
