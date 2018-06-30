@@ -2,14 +2,14 @@ language: php
 php:
 #  - 7.1
   - 7.2
-#  - nightly
-#  - hhvm
+  - nightly
+  - hhvm
 
-#matrix:
-#  allow_failures:
-#    - php: nightly
-#    - php: hhvm
-#  fast_finish: true
+matrix:
+  allow_failures:
+    - php: nightly
+    - php: hhvm
+  fast_finish: true
 
 notifications:
   on_success: never
@@ -22,7 +22,7 @@ install:
   - travis_retry composer install --prefer-dist --no-interaction
 
 script:
-  - composer check-code
+#  - composer check-code
   - if [ "$TRAVIS_PHP_VERSION" == "7.2" ] ; then composer test-cov; else composer test; fi
 
 #after_script:
