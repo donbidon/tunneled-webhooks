@@ -16,12 +16,11 @@
     "require": {
         "donbidon/core":                 "^0.1",
         "irazasyed/telegram-bot-sdk":    "^2.0",
-        "php-curl-class/php-curl-class": "dev-master",
-        "twilio/sdk":                     "^5.19"
+        "php-curl-class/php-curl-class": "dev-master"
     },
     "require-dev": {
-        "php":                  ">=5.7.1",
-        "donbidon/lib-phpunit": "dev-develop"
+        "squizlabs/php_codesniffer": "^3.2",
+        "donbidon/lib-phpunit":      "dev-develop"
     },
     "autoload": {
         "psr-4": {
@@ -33,5 +32,19 @@
              "donbidon\\TunneledWebhooks\\": ["tests", "tests/src"],
              "donbidon\\Core\\": ["vendor/donbidon/core/tests/src"]
          }
+    },
+    "scripts": {
+        "check-code": [
+            "\"vendor/bin/phpcs\" --standard=phpcs.xml -snp --encoding=utf-8 src/ tests/ --report-width=150"
+        ],
+        "test": [
+            "\"vendor/bin/phpunit\""
+        ],
+        "test-cov": [
+            "\"vendor/bin/phpunit\" --coverage-clover build/logs/clover.xml"
+        ],
+        "test-cov-upload": [
+            "wget https://scrutinizer-ci.com/ocular.phar && php ocular.phar code-coverage:upload --format=php-clover build/logs/clover.xml"
+        ]
     }
 }

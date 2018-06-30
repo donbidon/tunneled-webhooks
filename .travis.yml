@@ -21,9 +21,9 @@ git:
 install:
   - travis_retry composer install --prefer-dist --no-interaction
 
-#script:
-#  - composer check-code
-#  - if [ "$TRAVIS_PHP_VERSION" == "7.2" ] ; then composer test-cov; else composer test; fi
+script:
+  - composer check-code
+  - if [ "$TRAVIS_PHP_VERSION" == "7.2" ] ; then composer test-cov; else composer test; fi
 
 #after_script:
 #  - if [ "$TRAVIS_PHP_VERSION" == "7.2" ]; then composer test-cov-upload; fi
