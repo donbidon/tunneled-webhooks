@@ -2,14 +2,14 @@ language: php
 php:
 #  - 7.1
   - 7.2
-  - nightly
-  - hhvm
+#  - nightly
+#  - hhvm
 
-matrix:
-  allow_failures:
-    - php: nightly
-    - php: hhvm
-  fast_finish: true
+#matrix:
+#  allow_failures:
+#    - php: nightly
+#    - php: hhvm
+#  fast_finish: true
 
 notifications:
   on_success: never
