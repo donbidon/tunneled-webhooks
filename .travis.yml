@@ -1,18 +1,18 @@
 language: php
 php:
   - 5.5
-  - 5.6
-  - 7.0
-  - 7.1
+#  - 5.6
+#  - 7.0
+#  - 7.1
   - 7.2
-  - nightly
-  - hhvm
+#  - nightly
+#  - hhvm
 
-matrix:
-  allow_failures:
-    - php: nightly
-    - php: hhvm
-  fast_finish: true
+#matrix:
+#  allow_failures:
+#    - php: nightly
+#    - php: hhvm
+#  fast_finish: true
 
 notifications:
   on_success: never
