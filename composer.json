@@ -29,8 +29,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "donbidon\\TunneledWebhooks\\": ["tests", "tests/src"],
-      "donbidon\\Core\\": ["vendor/donbidon/core/tests/src"]
+      "donbidon\\TunneledWebhooks\\": ["tests", "tests/src"]
     }
   },
   "scripts": {
