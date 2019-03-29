@@ -39,7 +39,7 @@ command = "/path/to/ngrok http 80"
 ; 3 seconds enough to start service and connect their servers at my place.
 ;;;
 delay   = 3 ; In seconds
-status  = "http://localhost:4040/status" ; Default ngrok status page
+status  = "http://localhost:4040/api/tunnels" ; Default ngrok status page
 
 
 [app.webhook.Telegram.Windbag]

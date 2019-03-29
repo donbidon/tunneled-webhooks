@@ -29,16 +29,21 @@ class Ngrok extends ServiceAbstract
     {
         if (is_null($this->url)) {
             $this->runner->sendMessage("Requesting ngrok service status...", __METHOD__);
-            $response = file_get_contents($this->registry->get('status'));
-            if (!preg_match(
-                "/" . preg_quote('\\"URL\\":\\"') . "([^\\\]+)/",
-                $response,
-                $matches
-            )) {
+            $response = json_decode(
+                file_get_contents($this->registry->get('status')),
+                true
+            );
+            if (
+                !is_array($response) ||
+                !isset($response['tunnels']) ||
+                !is_array($response['tunnels']) ||
+                !isset($response['tunnels'][0]) ||
+                !isset($response['tunnels'][0]['public_url'])
+            ) {
                 $this->runner->sendError("Cannot parse ngrok service status response", __METHOD__);
             }
             $this->runner->sendMessage("ngrok service status received", __METHOD__);
-            $this->url = $matches[1];
+            $this->url = $response['tunnels'][0]['public_url'];
         }
 
         return $this->url;
