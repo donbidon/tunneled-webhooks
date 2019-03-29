@@ -13,13 +13,7 @@ Look [API documentation](https://donbidon.github.io/docs/apps/tunneled-webhooks/
 ## Installing
 
 ### Application
-Run `composer require donbidon/tunneled-webhooks dev-master` or add following code to your "composer.json" file:
-```json
-    "require": {
-        "donbidon/tunneled-webhooks": "dev-master"
-    }
-```
-and run `composer update`.
+Run `composer require donbidon/tunneled-webhooks dev-master`.
 
 ### Tunneling services
 [Download ngrok](https://ngrok.com/download) (and/or other tunneling services), sign up in service, get auth token and run service once `/path/to/ngrok authtoken %YOUR_AUTH_TOKEN%`.
@@ -41,7 +35,7 @@ server {
 and restart nginx.
 
 ### Application config
-Copy "data/config.skeleton.php" to "data/config.php" and put ngrok path/Telegram token to the new file:
+Copy "data/config.skeleton.php" to "data/config.php" and put ngrok path & Telegram token to the new file:
 ```ini
 ...
 ;;;
