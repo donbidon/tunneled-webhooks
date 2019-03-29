@@ -1,6 +1,7 @@
 # Composer
 composer.lock
 vendor/
+data/config.php
 
 # PHPUnit
 .phpunit.result.cache
