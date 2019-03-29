@@ -48,7 +48,7 @@ status  = "http://localhost:4040/status" ; Default ngrok status page
 ;;;
 ; See project documentation.
 ;;;
-url.register = "https://api.telegram.org/bot%s/setWebhook?url=%s/telegram/windbag.php"
+url.register = "https://api.telegram.org/bot%s/setWebhook?url=%s/com.telegram/bot.windbag.php"
 url.release  = "https://api.telegram.org/bot%s/deleteWebhook"
 ;;;
 ; Put your Telegram token here (see https://core.telegram.org/bots):
