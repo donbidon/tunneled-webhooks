@@ -29,7 +29,7 @@ source[] = "*"
 
 [app.service]
 ; Set full class name (including namespace) to use own service.
-class  = "ngrok"
+class  = "Ngrok"
 ;;;
 ; Put path to "ngrok" here:
 ;;;

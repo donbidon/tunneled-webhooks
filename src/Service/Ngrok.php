@@ -13,7 +13,7 @@ namespace donbidon\TunneledWebhooks\Service;
  *
  * See <a role="button" href="#source-view" data-toggle="modal"><i>source code</i></a>.
  */
-class ngrok extends ServiceAbstract
+class Ngrok extends ServiceAbstract
 {
     /**
      * Service URL
