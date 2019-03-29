@@ -1,4 +1,4 @@
-# Tunneled webhooks
+# Tunneled Webhooks
 
 Runs tunneling service and registers temporary webhooks for workstation having no white IP by one command `/path/to/php bin/run.php /path/to/config.php`.
 

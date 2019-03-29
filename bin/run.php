@@ -25,7 +25,7 @@ error_reporting(E_ALL);
 require_once sprintf("%s/../vendor/autoload.php", __DIR__);
 
 $output = [
-    "Tunneled webhooks",
+    "Tunneled Webhooks",
     "",
 ];
 if (2 != $argc) {

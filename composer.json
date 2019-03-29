@@ -1,7 +1,7 @@
 {
     "name": "donbidon/tunneled-webhooks",
     "type": "project",
-    "description": "Tunneled webhooks",
+    "description": "Tunneled Webhooks",
     "homepage": "https://github.com/donbidon/tunneled-webhooks",
     "keywords": ["php", "tunneling", "webhooks"],
     "license": "MIT",

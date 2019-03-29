@@ -20,7 +20,7 @@ use donbidon\TunneledWebhooks\Service\I_Service;
  * Instance created in "<a href="../files/bin.run.html">bin/run.php
  * </a>".
  * <!-- move: index.html -->
- * <h1>Tunneled webhooks</h1>
+ * <h1>Tunneled Webhooks</h1>
  * <b>Runs tunneling service and register temporary webhooks for workstation
  * having no white IP by one command
  * `/path/to/php bin/run.php /path/to/config.php`.</b>
