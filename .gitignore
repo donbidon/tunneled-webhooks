@@ -1,0 +1,15 @@
+# Composer
+composer.lock
+vendor/
+
+# PHPUnit
+.phpunit.result.cache
+coverage.xml
+
+# Docs
+.phpdoc.local.cmd
+
+.idea
+.junk
+
+www/index.php
