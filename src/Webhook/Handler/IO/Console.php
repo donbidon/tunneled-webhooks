@@ -18,7 +18,7 @@ namespace donbidon\TunneledWebhooks\Webhook\Handler\IO;
  *
  * @link ../files/bin.bot.windbag.html  Console windbag bot
  */
-class Console extends A_IO
+class Console extends IOAbstract
 {
     /**
      * {@inheritdoc}

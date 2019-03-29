@@ -18,7 +18,7 @@ use donbidon\Core\Registry\UT_Recursive;
  *
  * <!-- donbidon.skip -->
  */
-class UT_IO extends A_IO
+class UT_IO extends IOAbstract
 {
     use \donbidon\Core\Log\T_Logger;
 

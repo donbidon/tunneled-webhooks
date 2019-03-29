@@ -22,14 +22,14 @@ namespace donbidon\TunneledWebhooks\Webhook\Handler;
  *
  * @see Windbag
  */
-interface I_Handler
+interface HandlerInterface
 {
     /**
      * Constructor.
      *
-     * @param IO\I_IO $io
+     * @param IO\IOInterface $io
      */
-    public function __construct(IO\I_IO $io);
+    public function __construct(IO\IOInterface $io);
 
     /**
      * Processes request to webhook and sends response.

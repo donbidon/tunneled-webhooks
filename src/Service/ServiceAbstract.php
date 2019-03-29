@@ -9,7 +9,7 @@
 namespace donbidon\TunneledWebhooks\Service;
 
 use donbidon\Core\Registry\I_Registry;
-use donbidon\TunneledWebhooks\I_Runner;
+use donbidon\TunneledWebhooks\RunnerInterface;
 
 /**
  * Tunneling service abstract class.
@@ -41,12 +41,12 @@ use donbidon\TunneledWebhooks\I_Runner;
  *
  * @see ngrok
  */
-abstract class A_Service implements I_Service
+abstract class ServiceAbstract implements ServiceInterface
 {
     /**
      * Runner object
      *
-     * @var I_Runner
+     * @var RunnerInterface
      */
     protected $runner;
 
@@ -67,10 +67,10 @@ abstract class A_Service implements I_Service
     /**
      * {@inheritdoc}
      *
-     * @param I_Runner   $runner
+     * @param RunnerInterface   $runner
      * @param I_Registry $registry  Service registry part
      */
-    public function __construct(I_Runner $runner, I_Registry $registry)
+    public function __construct(RunnerInterface $runner, I_Registry $registry)
     {
         $this->runner   = $runner;
         $this->registry = $registry;

@@ -19,7 +19,7 @@ namespace donbidon\TunneledWebhooks\Webhook\Handler;
  * @link ../files/www.com.telegram.bot.windbag.html  Telegram windbag bot
  * @link ../files/bin.bot.windbag.html  Console windbag bot
  */
-class Windbag extends A_Handler
+class Windbag extends HandlerAbstract
 {
     /**
      * {@inheritdoc}

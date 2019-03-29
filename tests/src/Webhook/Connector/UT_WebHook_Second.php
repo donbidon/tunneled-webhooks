@@ -13,7 +13,7 @@ namespace donbidon\TunneledWebhooks\Webhook\Connector;
  *
  * <!-- donbidon.skip -->
  */
-class UT_Webhook_Second extends A_Connector
+class UT_Webhook_Second extends ConnectorAbstract
 {
     /**
      * {@inheritdoc}

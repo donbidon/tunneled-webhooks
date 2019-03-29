@@ -22,7 +22,7 @@ use Telegram\Bot\Api;
  *
  * @link ../files/www.com.telegram.bot.windbag.html  Telegram windbag bot
  */
-class Telegram extends A_IO
+class Telegram extends IOAbstract
 {
     /**
      * Telegram API object

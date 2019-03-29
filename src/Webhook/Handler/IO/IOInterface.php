@@ -30,7 +30,7 @@ use donbidon\Core\Registry\I_Registry;
  * @see Telegram
  * @see Console
  */
-interface I_IO
+interface IOInterface
 {
     /**
      * Constructor.

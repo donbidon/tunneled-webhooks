@@ -13,7 +13,7 @@ namespace donbidon\TunneledWebhooks\Webhook\Connector;
  *
  * See <a role="button" href="#source-view" data-toggle="modal"><i>source code</i></a>.
  */
-class Telegram extends A_Connector
+class Telegram extends ConnectorAbstract
 {
     /**
      * {@inheritdoc}

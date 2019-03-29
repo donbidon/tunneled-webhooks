@@ -12,7 +12,7 @@ use Exception;
 use RuntimeException;
 use donbidon\Core\ExceptionExtended as ExceptionExtended;
 use donbidon\Core\Registry\I_Registry;
-use donbidon\TunneledWebhooks\Service\I_Service;
+use donbidon\TunneledWebhooks\Service\ServiceInterface;
 
 /**
  * Runs tunnelling service and registers webhooks.
@@ -114,7 +114,7 @@ use donbidon\TunneledWebhooks\Service\I_Service;
  *
  * @link ../files/bin.run.html bin/run.php
  */
-class Runner implements I_Runner
+class Runner implements RunnerInterface
 {
     use \donbidon\Core\Log\T_Logger;
 
@@ -128,7 +128,7 @@ class Runner implements I_Runner
     /**
      * Tunneling service object
      *
-     * @var I_Service
+     * @var ServiceInterface
      */
     protected $service;
 
@@ -221,7 +221,7 @@ class Runner implements I_Runner
     public function handleShutdown(/** @noinspection PhpUnusedParameterInspection */ $number, $info = null)
     {
         foreach ($this->webhooks as
-            /** @var Webhook\Connector\I_Connector */$instance) {
+            /** @var Webhook\Connector\ConnectorInterface */$instance) {
             $instance->release();
         }
         $this->service->stop("Runner stopped");
@@ -270,14 +270,14 @@ class Runner implements I_Runner
                 $service
             ) : $service;
         /**
-         * @var Service\I_Service
+         * @var Service\ServiceInterface
          */
         $this->service = new $class($this, $registry);
-        if (!($this->service instanceof Service\I_Service)) {
+        if (!($this->service instanceof Service\ServiceInterface)) {
             throw new RuntimeException(sprintf(
                 "Class %s has to implement %s",
                 $class,
-                Service\I_Service::class
+                Service\ServiceInterface::class
             ));
         }
         $this->service->start();
@@ -315,14 +315,14 @@ class Runner implements I_Runner
                     sprintf("Processing '%s'...", $section), __METHOD__
                 );
                 /**
-                 * @var Webhook\Connector\I_Connector
+                 * @var Webhook\Connector\ConnectorInterface
                  */
                 $instance = new $class($this, $registry);
-                if (!($instance instanceof Webhook\Connector\I_Connector)) {
+                if (!($instance instanceof Webhook\Connector\ConnectorInterface)) {
                     throw new RuntimeException(sprintf(
                         "Class %s has to implement %s",
                         $class,
-                        Webhook\Connector\I_Connector::class
+                        Webhook\Connector\ConnectorInterface::class
                     ));
                 }
                 $instance->register();

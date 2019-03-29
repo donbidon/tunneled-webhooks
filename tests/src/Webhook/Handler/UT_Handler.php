@@ -16,19 +16,19 @@ use donbidon\Core\Registry\UT_Recursive;
  *
  * <!-- donbidon.skip -->
  */
-class UT_Handler extends A_Handler
+class UT_Handler extends HandlerAbstract
 {
     use \donbidon\Core\Log\T_Logger;
 
     /**
      * {@inheritdoc}
      *
-     * @param IO\I_IO $io
+     * @param IO\IOInterface $io
      *
      * @throws \ReflectionException  Risen from UT_Recursive::_get().
      * @throws ExceptionExtended  Risen from T_Logger::log().
      */
-    public function __construct(IO\I_IO $io)
+    public function __construct(IO\IOInterface $io)
     {
         parent::__construct($io);
         $this->evtManager = UT_Recursive::_get('core/event/manager');

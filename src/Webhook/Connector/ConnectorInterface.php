@@ -9,7 +9,7 @@
 namespace donbidon\TunneledWebhooks\Webhook\Connector;
 
 use donbidon\Core\Registry\I_Registry;
-use donbidon\TunneledWebhooks\I_Runner;
+use donbidon\TunneledWebhooks\RunnerInterface;
 
 /**
  * Webhook connector interface.
@@ -26,15 +26,15 @@ use donbidon\TunneledWebhooks\I_Runner;
  *
  * @see Telegram
  */
-interface I_Connector
+interface ConnectorInterface
 {
     /**
      * Constructor.
      *
-     * @param I_Runner   $runner
+     * @param RunnerInterface   $runner
      * @param I_Registry $registry  Webhook registry part
      */
-    public function __construct(I_Runner $runner, I_Registry $registry);
+    public function __construct(RunnerInterface $runner, I_Registry $registry);
 
     /**
      * Registers webhooks.

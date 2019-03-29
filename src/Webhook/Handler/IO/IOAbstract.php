@@ -23,7 +23,7 @@ use donbidon\Core\Registry\I_Registry;
  * @see Telegram
  * @see Console
  */
-abstract class A_IO implements I_IO
+abstract class IOAbstract implements IOInterface
 {
     /**
      * Webhook registry part

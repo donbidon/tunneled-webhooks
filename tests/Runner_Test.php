@@ -26,10 +26,10 @@ class Runner_Test extends \PHPUnit\Framework\TestCase
      * @covers \donbidon\TunneledWebhooks\Runner::getServiceURL
      * @covers \donbidon\TunneledWebhooks\Runner::sendMessage
      * @covers \donbidon\TunneledWebhooks\Runner::sendError
-     * @covers \donbidon\TunneledWebhooks\Service\A_Service::__construct
-     * @covers \donbidon\TunneledWebhooks\Service\A_Service::start
-     * @covers \donbidon\TunneledWebhooks\Service\A_Service::stop
-     * @covers \donbidon\TunneledWebhooks\Service\A_Service::getURL
+     * @covers \donbidon\TunneledWebhooks\Service\ServiceAbstract::__construct
+     * @covers \donbidon\TunneledWebhooks\Service\ServiceAbstract::start
+     * @covers \donbidon\TunneledWebhooks\Service\ServiceAbstract::stop
+     * @covers \donbidon\TunneledWebhooks\Service\ServiceAbstract::getURL
      */
     public function testRunner()
     {

@@ -16,21 +16,21 @@ namespace donbidon\TunneledWebhooks\Webhook\Handler;
  *
  * @see Windbag
  */
-abstract class A_Handler implements I_Handler
+abstract class HandlerAbstract implements HandlerInterface
 {
     /**
      * I/O object
      *
-     * @var IO\I_IO
+     * @var IO\IOInterface
      */
     protected $io;
 
     /**
      * {@inheritdoc}
      *
-     * @param IO\I_IO $io
+     * @param IO\IOInterface $io
      */
-    public function __construct(IO\I_IO $io)
+    public function __construct(IO\IOInterface $io)
     {
         $this->io = $io;
     }

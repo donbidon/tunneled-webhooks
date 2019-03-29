@@ -9,7 +9,7 @@
 namespace donbidon\TunneledWebhooks\Service;
 
 use donbidon\Core\Registry\I_Registry;
-use donbidon\TunneledWebhooks\I_Runner;
+use donbidon\TunneledWebhooks\RunnerInterface;
 
 /**
  * Tunneling service interface.
@@ -62,15 +62,15 @@ use donbidon\TunneledWebhooks\I_Runner;
  *
  * @see ngrok
  */
-interface I_Service
+interface ServiceInterface
 {
     /**
      * Constructor.
      *
-     * @param I_Runner   $runner
+     * @param RunnerInterface   $runner
      * @param I_Registry $registry  Service registry part
      */
-    public function __construct(I_Runner $runner, I_Registry $registry);
+    public function __construct(RunnerInterface $runner, I_Registry $registry);
 
     /**
      * Starts service.

@@ -13,7 +13,7 @@ namespace donbidon\TunneledWebhooks;
  *
  * @link ../files/bin.run.html bin/run.php
  */
-interface I_Runner
+interface RunnerInterface
 {
     /**
      * Constructor.
