@@ -38,7 +38,7 @@ command = "/path/to/ngrok http 80"
 ; Delay after starting service.
 ; 3 seconds enough to start service and connect their servers at my place.
 ;;;
-delay   = 3 ; In seconds
+delay   = 5 ; In seconds
 status  = "http://localhost:4040/api/tunnels" ; Default ngrok status page
 
 

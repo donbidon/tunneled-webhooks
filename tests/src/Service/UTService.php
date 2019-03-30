@@ -6,6 +6,8 @@
  * @license   https://opensource.org/licenses/mit-license.php
  */
 
+declare(strict_types=1);
+
 /** @noinspection PhpMissingParentCallCommonInspection */
 
 namespace donbidon\TunneledWebhooks\Service;
@@ -20,7 +22,7 @@ class UTService extends ServiceAbstract
     /**
      * {@inheritdoc}
      */
-    public function start()
+    public function start(): void
     {
         $this->runner->sendMessage("", __METHOD__);
     }
@@ -30,15 +32,18 @@ class UTService extends ServiceAbstract
      *
      * @param string $reason
      */
-    public function stop($reason = null)
+    public function stop(string $reason = null): void
     {
+        if (is_null($reason)) {
+            $reason = "";
+        }
         $this->runner->sendMessage($reason, __METHOD__);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getURL()
+    public function getURL(): string
     {
         $this->runner->sendMessage("", __METHOD__);
 

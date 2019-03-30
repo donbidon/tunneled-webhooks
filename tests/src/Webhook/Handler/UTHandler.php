@@ -6,6 +6,8 @@
  * @license   https://opensource.org/licenses/mit-license.php
  */
 
+declare(strict_types=1);
+
 namespace donbidon\TunneledWebhooks\Webhook\Handler;
 
 use donbidon\Core\ExceptionExtended as ExceptionExtended;
@@ -42,7 +44,7 @@ class UTHandler extends HandlerAbstract
      *
      * @throws ExceptionExtended  Risen from T_Logger::log().
      */
-    public function run($options = null)
+    public function run($options = null): void
     {
         $message = $this->io->receive();
         $this->log($message, __METHOD__);

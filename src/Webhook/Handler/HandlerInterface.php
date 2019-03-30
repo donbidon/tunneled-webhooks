@@ -6,6 +6,8 @@
  * @license   https://opensource.org/licenses/mit-license.php
  */
 
+declare(strict_types=1);
+
 namespace donbidon\TunneledWebhooks\Webhook\Handler;
 
 /**
@@ -38,5 +40,5 @@ interface HandlerInterface
      *
      * @return void
      */
-    public function run($options = null);
+    public function run($options = null): void;
 }

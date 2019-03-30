@@ -6,6 +6,8 @@
  * @license   https://opensource.org/licenses/mit-license.php
  */
 
+declare(strict_types=1);
+
 namespace donbidon\TunneledWebhooks\Service;
 
 use donbidon\Core\Registry\I_Registry;
@@ -77,7 +79,7 @@ interface ServiceInterface
      *
      * @return void
      */
-    public function start();
+    public function start(): void;
 
     /**
      * Stops service.
@@ -86,12 +88,12 @@ interface ServiceInterface
      *
      * @return void
      */
-    public function stop($reason = null);
+    public function stop(string $reason = null): void;
 
     /**
      * Returns service URL.
      *
      * @return string
      */
-    public function getURL();
+    public function getURL(): string;
 }

@@ -6,6 +6,7 @@
  * @license   https://opensource.org/licenses/mit-license.php
  */
 
+declare(strict_types=1);
 /** @noinspection PhpIllegalPsrClassPathInspection */
 namespace donbidon\TunneledWebhooks\Webhook\Handler;
 
@@ -24,13 +25,14 @@ class BotTest extends \PHPUnit\Framework\TestCase
      *
      * @throws \ReflectionException  Risen from UT_Recursive::_get().
      * @throws ExceptionExtended  Risen from IO\UTIO::__construct().
-     * @covers \donbidon\TunneledWebhooks\\Webhook\Handler\IO\A_IO::__construct
-     * @covers \donbidon\TunneledWebhooks\\Webhook\Handler\IO\A_IO::receive
-     * @covers \donbidon\TunneledWebhooks\\Webhook\Handler\IO\A_IO::send
-     * @covers \donbidon\TunneledWebhooks\\Webhook\Handler\A_Handler::__construct
-     * @covers \donbidon\TunneledWebhooks\\Webhook\Handler\A_Handler::run
+     *
+     * @_covers donbidon\TunneledWebhooks\\Webhook\Handler\IO\IOAbstract::__construct()
+     * @_covers donbidon\TunneledWebhooks\\Webhook\Handler\IO\IOAbstract::receive()
+     * @_covers donbidon\TunneledWebhooks\\Webhook\Handler\IO\IOAbstract::send()
+     * @_covers donbidon\TunneledWebhooks\\Webhook\Handler\HandlerAbstract::__construct()
+     * @_covers donbidon\TunneledWebhooks\\Webhook\Handler\HandlerAbstract::run()
      */
-    public function testWebhooksHandling()
+    public function testWebhooksHandling(): void
     {
         \donbidon\Core\UT_Bootstrap::initByPath(implode(
             DIRECTORY_SEPARATOR,

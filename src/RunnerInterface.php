@@ -6,6 +6,8 @@
  * @license   https://opensource.org/licenses/mit-license.php
  */
 
+declare(strict_types=1);
+
 namespace donbidon\TunneledWebhooks;
 
 /**
@@ -20,14 +22,14 @@ interface RunnerInterface
      *
      * @param string $path  Path to config
      */
-    public function __construct($path);
+    public function __construct(string $path);
 
     /**
      * Returns tunneling service URL.
      *
      * @return string
      */
-    public function getServiceURL();
+    public function getServiceURL(): string;
 
     /**
      * Sends message.
@@ -37,7 +39,7 @@ interface RunnerInterface
      *
      * @return void
      */
-    public function sendMessage($message, $source);
+    public function sendMessage(string $message, string $source): void;
 
     /**
      * Stops service, sends error and exits.
@@ -47,5 +49,5 @@ interface RunnerInterface
      *
      * @return void
      */
-    public function sendError($message, $source);
+    public function sendError(string $message, string $source): void;
 }

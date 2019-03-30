@@ -6,6 +6,8 @@
  * @license   https://opensource.org/licenses/mit-license.php
  */
 
+declare(strict_types=1);
+
 namespace donbidon\TunneledWebhooks\Service;
 
 /**
@@ -25,25 +27,42 @@ class Ngrok extends ServiceAbstract
     /**
      * {@inheritdoc}
      */
-    public function getURL()
+    public function getURL(): string
     {
         if (is_null($this->url)) {
-            $this->runner->sendMessage("Requesting ngrok service status...", __METHOD__);
-            $response = json_decode(
-                file_get_contents($this->registry->get('status')),
+            $this->runner->sendMessage("Requesting ngrok service tunnels...", __METHOD__);
+            $response = file_get_contents($this->registry->get('status'));
+            $decoded = json_decode(
+                $response,
                 true
             );
-            if (
-                !is_array($response) ||
-                !isset($response['tunnels']) ||
-                !is_array($response['tunnels']) ||
-                !isset($response['tunnels'][0]) ||
-                !isset($response['tunnels'][0]['public_url'])
-            ) {
-                $this->runner->sendError("Cannot parse ngrok service status response", __METHOD__);
+            if (!is_array($decoded)) {
+                $this->runner->sendError(
+                    sprintf("Cannot parse ngrok service tunnels response: %s", $response),
+                    __METHOD__
+                );
             }
-            $this->runner->sendMessage("ngrok service status received", __METHOD__);
-            $this->url = $response['tunnels'][0]['public_url'];
+            if (!isset($decoded['tunnels']) || !is_array($decoded['tunnels'])) {
+                $this->runner->sendError(
+                    sprintf(
+                        "Invalid ngrok service tunnels response:%s%s",
+                        var_export($decoded, true)
+                    ),
+                    __METHOD__
+                );
+            }
+            if (!isset($decoded['tunnels'][0]) || !isset($decoded['tunnels'][0]['public_url'])) {
+                $this->runner->sendError(
+                    sprintf(
+                        "Empty ngrok service tunnels response:%s%s",
+                        PHP_EOL,
+                        var_export($decoded, true)
+                    ),
+                    __METHOD__
+                );
+            }
+            $this->runner->sendMessage("ngrok service tunnels received", __METHOD__);
+            $this->url = $decoded['tunnels'][0]['public_url'];
         }
 
         return $this->url;
@@ -54,7 +73,7 @@ class Ngrok extends ServiceAbstract
      *
      * @param string $reason
      */
-    public function stop($reason = null)
+    public function stop(string $reason = null): void
     {
         $this->url = null;
         parent::stop($reason);

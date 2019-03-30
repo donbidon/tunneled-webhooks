@@ -6,11 +6,14 @@
  * @license   https://opensource.org/licenses/mit-license.php
  */
 
+declare(strict_types=1);
+
 namespace donbidon\TunneledWebhooks\Webhook\Handler\IO;
 
 use donbidon\Core\ExceptionExtended as ExceptionExtended;
 use donbidon\Core\Registry\I_Registry;
 use donbidon\Core\Registry\UT_Recursive;
+use donbidon\TunneledWebhooks\RunnerTest;
 
 /**
  * Webhook handling I/O class for unit testing.
@@ -43,7 +46,7 @@ class UTIO extends IOAbstract
      *
      * @return string
      */
-    public function receive($options = null)
+    public function receive($options = null): string
     {
         return "UI external service message";
     }
@@ -56,7 +59,7 @@ class UTIO extends IOAbstract
      *
      * @throws ExceptionExtended  Risen from T_Logger::log().
      */
-    public function send($response, $options = null)
+    public function send(string $response, $options = null): void
     {
         $this->log($response, __METHOD__);
     }

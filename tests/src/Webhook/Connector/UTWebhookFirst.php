@@ -6,6 +6,8 @@
  * @license   https://opensource.org/licenses/mit-license.php
  */
 
+declare(strict_types=1);
+
 namespace donbidon\TunneledWebhooks\Webhook\Connector;
 
 /**
@@ -18,7 +20,7 @@ class UTWebhookFirst extends ConnectorAbstract
     /**
      * {@inheritdoc}
      */
-    public function register()
+    public function register(): void
     {
         $this->runner->sendMessage(
             "",
@@ -29,7 +31,7 @@ class UTWebhookFirst extends ConnectorAbstract
     /**
      * {@inheritdoc}
      */
-    public function release()
+    public function release(): void
     {
         $this->runner->sendMessage(
             "",

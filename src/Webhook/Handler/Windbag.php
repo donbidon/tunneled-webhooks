@@ -6,6 +6,8 @@
  * @license   https://opensource.org/licenses/mit-license.php
  */
 
+declare(strict_types=1);
+
 namespace donbidon\TunneledWebhooks\Webhook\Handler;
 
 /**
@@ -26,7 +28,7 @@ class Windbag extends HandlerAbstract
      *
      * @param string $path  Path to file containing previous incoming phrases
      */
-    public function run($path = null)
+    public function run($path = null): void
     {
         $message = $this->io->receive();
         if (is_null($message)) {

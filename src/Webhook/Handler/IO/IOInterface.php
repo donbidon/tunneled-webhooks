@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/mit-license.php
  */
 
+declare(strict_types=1);
+
 namespace donbidon\TunneledWebhooks\Webhook\Handler\IO;
 
 use donbidon\Core\Registry\I_Registry;
@@ -56,5 +58,5 @@ interface IOInterface
      *
      * @return void
      */
-    public function send($response, $options = null);
+    public function send(string $response, $options = null): void;
 }

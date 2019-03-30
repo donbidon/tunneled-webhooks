@@ -6,6 +6,8 @@
  * @license   https://opensource.org/licenses/mit-license.php
  */
 
+declare(strict_types=1);
+
 namespace donbidon\TunneledWebhooks;
 
 use Exception;
@@ -149,7 +151,7 @@ class Runner implements RunnerInterface
      *
      * @throws Exception
      */
-    public function __construct($path)
+    public function __construct(string $path)
     {
         $this->registry   = \donbidon\Core\Bootstrap::initByPath($path);
         $this->evtManager = $this->registry->get('core/event/manager');
@@ -179,7 +181,7 @@ class Runner implements RunnerInterface
     /**
      * {@inheritdoc}
      */
-    public function getServiceURL()
+    public function getServiceURL(): string
     {
         return $this->service->getURL();
     }
@@ -192,7 +194,7 @@ class Runner implements RunnerInterface
      *
      * @throws ExceptionExtended  Risen from \donbidon\Core\Log\T_Logger::log().
      */
-    public function sendMessage($message, $source)
+    public function sendMessage(string $message, string $source): void
     {
         $this->log($message, $source);
     }
@@ -205,7 +207,7 @@ class Runner implements RunnerInterface
      *
      * @throws ExceptionExtended  Risen from \donbidon\Core\Log\T_Logger::log().
      */
-    public function sendError($message, $source)
+    public function sendError(string $message, string $source): void
     {
         $this->service->stop($message);
         $this->log($message, $source, E_ERROR);
@@ -217,8 +219,10 @@ class Runner implements RunnerInterface
      *
      * @param int   $number
      * @param mixed $info
+     *
+     * @return void
      */
-    public function handleShutdown(/** @noinspection PhpUnusedParameterInspection */ $number, $info = null)
+    public function handleShutdown(/** @noinspection PhpUnusedParameterInspection */ int $number, $info = null): void
     {
         foreach ($this->webhooks as /** @var Webhook\Connector\ConnectorInterface */$instance) {
             $instance->release();
@@ -230,8 +234,10 @@ class Runner implements RunnerInterface
      * Main loop.
      *
      * @throws Exception
+     *
+     * @return void
      */
-    protected function run()
+    protected function run(): void
     {
         try {
             $this->startService();
@@ -259,7 +265,7 @@ class Runner implements RunnerInterface
      *
      * @see self::__construct()
      */
-    protected function startService()
+    protected function startService(): void
     {
         $registry = $this->registry->newFromKey('app/service');
         $service = $registry->get('class');
@@ -293,7 +299,7 @@ class Runner implements RunnerInterface
      *
      * @see self::__construct()
      */
-    protected function registerWebhooks()
+    protected function registerWebhooks(): void
     {
         $webhooks = array_keys($this->registry->get('app/webhook'));
         foreach ($webhooks as $webhook) {
@@ -338,7 +344,7 @@ class Runner implements RunnerInterface
      *
      * @see self::__construct()
      */
-    protected function infiniteLoop()
+    protected function infiniteLoop(): void
     {
         // $min = 0;
         while (true) {

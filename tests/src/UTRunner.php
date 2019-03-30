@@ -6,6 +6,8 @@
  * @license   https://opensource.org/licenses/mit-license.php
  */
 
+declare(strict_types=1);
+
 /** @noinspection PhpMissingParentCallCommonInspection */
 
 namespace donbidon\TunneledWebhooks;
@@ -23,7 +25,7 @@ class UTRunner extends Runner
      *
      * @param string $path
      */
-    public function __construct($path)
+    public function __construct(string $path)
     {
         $this->registry = \donbidon\Core\UT_Bootstrap::initByPath($path);
         $this->evtManager = $this->registry->get('core/event/manager');
@@ -37,7 +39,7 @@ class UTRunner extends Runner
      * @param  string $message
      * @param  string $source
      */
-    public function sendError($message, $source)
+    public function sendError(string $message, string $source): void
     {
         $this->service->stop();
         $this->log($message, $source, E_ERROR);
@@ -48,7 +50,7 @@ class UTRunner extends Runner
      *
      * @throws \donbidon\Core\ExceptionExtended  Risen from self::sendError().
      */
-    protected function infiniteLoop()
+    protected function infiniteLoop(): void
     {
         $this->sendError("", __METHOD__);
     }

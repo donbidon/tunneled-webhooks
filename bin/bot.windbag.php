@@ -19,6 +19,8 @@
  * @link data.config.skeleton.html  data/config.skeleton.php
  */
 
+declare(strict_types=1);
+
 namespace donbidon\TunneledWebhooks\Webhook\Handler;
 
 error_reporting(E_ALL);

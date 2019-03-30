@@ -6,6 +6,8 @@
  * @license   https://opensource.org/licenses/mit-license.php
  */
 
+declare(strict_types=1);
+
 namespace donbidon\TunneledWebhooks;
 
 use donbidon\Core\Registry\UT_Recursive;
@@ -21,17 +23,17 @@ class RunnerTest extends \PHPUnit\Framework\TestCase
      * @return void
      *
      * @throws \Exception  Risen from UTRunner::__construct().
-     * @covers \donbidon\TunneledWebhooks\Runner::__construct
-     * @covers \donbidon\TunneledWebhooks\Runner::registry
-     * @covers \donbidon\TunneledWebhooks\Runner::getServiceURL
-     * @covers \donbidon\TunneledWebhooks\Runner::sendMessage
-     * @covers \donbidon\TunneledWebhooks\Runner::sendError
-     * @covers \donbidon\TunneledWebhooks\Service\ServiceAbstract::__construct
-     * @covers \donbidon\TunneledWebhooks\Service\ServiceAbstract::start
-     * @covers \donbidon\TunneledWebhooks\Service\ServiceAbstract::stop
-     * @covers \donbidon\TunneledWebhooks\Service\ServiceAbstract::getURL
+     *
+     * @covers donbidon\TunneledWebhooks\Runner::__construct()
+     * @covers donbidon\TunneledWebhooks\Runner::getServiceURL()
+     * @covers donbidon\TunneledWebhooks\Runner::sendMessage()
+     * @covers donbidon\TunneledWebhooks\Runner::sendError()
+     * @covers donbidon\TunneledWebhooks\Service\ServiceAbstract::__construct()
+     * @covers donbidon\TunneledWebhooks\Service\ServiceAbstract::start()
+     * @covers donbidon\TunneledWebhooks\Service\ServiceAbstract::stop()
+     * @covers donbidon\TunneledWebhooks\Service\ServiceAbstract::getURL()
      */
-    public function testRunner()
+    public function testRunner(): void
     {
         ob_start();
         $runner = new UTRunner(implode(

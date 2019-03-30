@@ -6,6 +6,8 @@
  * @license   https://opensource.org/licenses/mit-license.php
  */
 
+declare(strict_types=1);
+
 namespace donbidon\TunneledWebhooks\Webhook\Handler\IO;
 
 /**
@@ -27,7 +29,7 @@ class Console extends IOAbstract
      *
      * @return string
      */
-    public function receive($options = null)
+    public function receive($options = null): string
     {
         echo $this->registry->get('prompt', "> ");
         $result = trim(fgets(STDIN));
@@ -42,7 +44,7 @@ class Console extends IOAbstract
      * @param string $response
      * @param mixed  $options   Options (not used_
      */
-    public function send($response, $options = null)
+    public function send(string $response, $options = null): void
     {
         echo $response, PHP_EOL;
     }

@@ -6,6 +6,8 @@
  * @license   https://opensource.org/licenses/mit-license.php
  */
 
+declare(strict_types=1);
+
 namespace donbidon\TunneledWebhooks\Webhook\Handler\IO;
 
 use donbidon\Core\Registry\I_Registry;
@@ -58,7 +60,7 @@ class Telegram extends IOAbstract
      *
      * @return string
      */
-    public function receive($options = null)
+    public function receive($options = null): string
     {
         $updates      = $this->api->getWebhookUpdates();
         $this->chatId = $updates['message']['chat']['id'];
@@ -73,11 +75,11 @@ class Telegram extends IOAbstract
      * @param string $response
      * @param array  $options   Telegram API message options
      */
-    public function send($response, $options = null)
+    public function send(string $response, $options = null): void
     {
         $message = [
             'chat_id' => $this->chatId,
-            'text' => $response,
+            'text'    => $response,
         ];
         if (is_array($options)) {
             $message += $options;

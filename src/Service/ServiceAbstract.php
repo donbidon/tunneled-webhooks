@@ -6,6 +6,8 @@
  * @license   https://opensource.org/licenses/mit-license.php
  */
 
+declare(strict_types=1);
+
 namespace donbidon\TunneledWebhooks\Service;
 
 use donbidon\Core\Registry\I_Registry;
@@ -79,7 +81,7 @@ abstract class ServiceAbstract implements ServiceInterface
     /**
      * {@inheritdoc}
      */
-    public function start()
+    public function start(): void
     {
         $this->runner->sendMessage(
             "Starting of tunneling service...",
@@ -96,7 +98,7 @@ abstract class ServiceAbstract implements ServiceInterface
                 'bypass_shell' => true,
             ]
         );
-        sleep($this->registry->get('delay', 0));
+        sleep((int)$this->registry->get('delay', 0));
         $status = proc_get_status($this->process);
         if (empty($status['running'])) {
             $this->runner->sendError(
@@ -116,7 +118,7 @@ abstract class ServiceAbstract implements ServiceInterface
      *
      * @param string $reason
      */
-    public function stop($reason = null)
+    public function stop(string $reason = null): void
     {
         if (is_resource($this->process)) {
             proc_terminate($this->process);
