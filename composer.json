@@ -7,13 +7,14 @@
   "license": "MIT",
   "authors": [
     {
-      "name":     "donbidon",
+      "name": "donbidon",
       "homepage": "http://donbidon.rf.gd/"
     }
   ],
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require": {
+    "php": "^7.2",
     "ext-json": "*",
     "donbidon/core": "^0.1",
     "irazasyed/telegram-bot-sdk": "^2.0"
@@ -35,13 +36,13 @@
   },
   "scripts": {
     "check-code": [
-      "\"vendor/bin/phpcs\" --standard=phpcs.xml -snp --encoding=utf-8 src/ tests/ bin/ www/ --report-width=150"
+      "\"vendor/bin/phpcs\" --standard=build/PSR2+.xml -sp src/ tests/ bin/ www/ --report-width=150"
     ],
     "test": [
-      "\"vendor/bin/phpunit\""
+      "\"vendor/bin/phpunit\" -c phpunit.xml"
     ],
     "test-cov": [
-      "\"vendor/bin/phpunit\" --coverage-clover build/logs/clover.xml"
+      "\"vendor/bin/phpunit\" -c phpunit.xml --coverage-clover build/logs/clover.xml"
     ],
     "test-cov-upload": [
       "wget https://scrutinizer-ci.com/ocular.phar && php ocular.phar code-coverage:upload --format=php-clover build/logs/clover.xml"
