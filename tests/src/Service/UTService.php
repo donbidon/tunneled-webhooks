@@ -15,7 +15,7 @@ namespace donbidon\TunneledWebhooks\Service;
  *
  * <!-- donbidon.skip -->
  */
-class UT_Service extends ServiceAbstract
+class UTService extends ServiceAbstract
 {
     /**
      * {@inheritdoc}

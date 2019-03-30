@@ -15,7 +15,7 @@ namespace donbidon\TunneledWebhooks;
  *
  * <!-- donbidon.skip -->
  */
-class UT_Runner extends Runner
+class UTRunner extends Runner
 {
     /** @noinspection PhpMissingParentConstructorInspection */
     /**

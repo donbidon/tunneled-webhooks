@@ -220,8 +220,7 @@ class Runner implements RunnerInterface
      */
     public function handleShutdown(/** @noinspection PhpUnusedParameterInspection */ $number, $info = null)
     {
-        foreach ($this->webhooks as
-            /** @var Webhook\Connector\ConnectorInterface */$instance) {
+        foreach ($this->webhooks as /** @var Webhook\Connector\ConnectorInterface */$instance) {
             $instance->release();
         }
         $this->service->stop("Runner stopped");
@@ -298,9 +297,9 @@ class Runner implements RunnerInterface
     {
         $webhooks = array_keys($this->registry->get('app/webhook'));
         foreach ($webhooks as $webhook) {
-            $indexes = array_keys($this->registry->get(sprintf(
-                'app/webhook/%s', $webhook
-            )));
+            $indexes = array_keys($this->registry->get(
+                sprintf('app/webhook/%s', $webhook)
+            ));
             foreach ($indexes as $index) {
                 $section = sprintf('app/webhook/%s/%s', $webhook, $index);
                 $registry = $this->registry->newFromKey($section);
@@ -312,7 +311,8 @@ class Runner implements RunnerInterface
                     );
                 }
                 $this->log(
-                    sprintf("Processing '%s'...", $section), __METHOD__
+                    sprintf("Processing '%s'...", $section),
+                    __METHOD__
                 );
                 /**
                  * @var Webhook\Connector\ConnectorInterface

@@ -39,7 +39,7 @@ use donbidon\TunneledWebhooks\RunnerInterface;
  * ; Settings whatever your service needed...
  * ```
  *
- * @see ngrok
+ * @see Ngrok
  */
 abstract class ServiceAbstract implements ServiceInterface
 {
@@ -87,13 +87,13 @@ abstract class ServiceAbstract implements ServiceInterface
         );
         $pipes = [];
         $this->process = proc_open(
-           $this->registry->get('command'),
+            $this->registry->get('command'),
             [],
             $pipes,
             null,
             null,
             [
-                'bypass_shell' => TRUE,
+                'bypass_shell' => true,
             ]
         );
         sleep($this->registry->get('delay', 0));

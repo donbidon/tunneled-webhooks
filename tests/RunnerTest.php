@@ -13,14 +13,14 @@ use donbidon\Core\Registry\UT_Recursive;
 /**
  * Starting service and registering webhooks unit tests.
  */
-class Runner_Test extends \PHPUnit\Framework\TestCase
+class RunnerTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runner tests.
      *
      * @return void
      *
-     * @throws \Exception  Risen from UT_Runner::__construct().
+     * @throws \Exception  Risen from UTRunner::__construct().
      * @covers \donbidon\TunneledWebhooks\Runner::__construct
      * @covers \donbidon\TunneledWebhooks\Runner::registry
      * @covers \donbidon\TunneledWebhooks\Runner::getServiceURL
@@ -34,21 +34,24 @@ class Runner_Test extends \PHPUnit\Framework\TestCase
     public function testRunner()
     {
         ob_start();
-        $runner = new UT_Runner(implode(
+        $runner = new UTRunner(implode(
             DIRECTORY_SEPARATOR,
             [__DIR__, "data", "config.php"]
         ));
         $actual = ob_get_clean();
         $expected = implode(PHP_EOL, [
-            "[ note ] [ donbidon\TunneledWebhooks\Service\UT_Service::start ] ~ ",
-            "[ note ] [ donbidon\TunneledWebhooks\Runner::registerWebhooks ] ~ Processing 'app/webhook/UT_Webhook_First/firstBot'...",
-            "[ note ] [ donbidon\TunneledWebhooks\Webhook\Connector\UT_Webhook_First::register ] ~ ",
-            "[ note ] [ donbidon\TunneledWebhooks\Runner::registerWebhooks ] ~ Processing 'app/webhook/UT_Webhook_Second/firstBot'...",
-            "[ note ] [ donbidon\TunneledWebhooks\Webhook\Connector\UT_Webhook_Second::register ] ~ ",
-            "[ note ] [ donbidon\TunneledWebhooks\Runner::registerWebhooks ] ~ Processing 'app/webhook/UT_Webhook_Second/secondBot'...",
-            "[ note ] [ donbidon\TunneledWebhooks\Webhook\Connector\UT_Webhook_Second::register ] ~ ",
-            "[ note ] [ donbidon\TunneledWebhooks\Service\UT_Service::stop ] ~ ",
-            "[ ERR  ] [ donbidon\TunneledWebhooks\UT_Runner::infiniteLoop ] ~ ",
+            "[ note ] [ donbidon\TunneledWebhooks\Service\UTService::start ] ~ ",
+            "[ note ] [ donbidon\TunneledWebhooks\Runner::registerWebhooks ] ~ " .
+                "Processing 'app/webhook/UTWebhookFirst/firstBot'...",
+            "[ note ] [ donbidon\TunneledWebhooks\Webhook\Connector\UTWebhookFirst::register ] ~ ",
+            "[ note ] [ donbidon\TunneledWebhooks\Runner::registerWebhooks ] ~ " .
+                "Processing 'app/webhook/UTWebhookSecond/firstBot'...",
+            "[ note ] [ donbidon\TunneledWebhooks\Webhook\Connector\UTWebhookSecond::register ] ~ ",
+            "[ note ] [ donbidon\TunneledWebhooks\Runner::registerWebhooks ] ~ " .
+                "Processing 'app/webhook/UTWebhookSecond/secondBot'...",
+            "[ note ] [ donbidon\TunneledWebhooks\Webhook\Connector\UTWebhookSecond::register ] ~ ",
+            "[ note ] [ donbidon\TunneledWebhooks\Service\UTService::stop ] ~ ",
+            "[ ERR  ] [ donbidon\TunneledWebhooks\UTRunner::infiniteLoop ] ~ ",
             "",
         ]);
         self::assertEquals($expected, $actual);

@@ -32,7 +32,9 @@ if (2 != $argc) {
     $php = getenv('PHPBIN') ? getenv('PHPBIN') : "php";
     $output[] = "Starts tunneling service and register appropriate webhooks.";
     $output[] = sprintf(
-        "Usage: %s %s path/to/config", $php, $_SERVER['PHP_SELF']
+        "Usage: %s %s path/to/config",
+        $php,
+        $_SERVER['PHP_SELF']
     );
     $output[] = "";
 }

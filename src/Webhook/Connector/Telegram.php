@@ -36,7 +36,7 @@ class Telegram extends ConnectorAbstract
                 $fail = "Requesting Telegram API failed";
                 break;
             }
-            $decoded = json_decode($response, TRUE);
+            $decoded = json_decode($response, true);
             if (!is_array($decoded)) {
                 $fail = "Invalid response from Telegram API";
                 break;
@@ -78,7 +78,7 @@ class Telegram extends ConnectorAbstract
                 $fail = "Requesting Telegram API failed";
                 break;
             }
-            $decoded = json_decode($response, TRUE);
+            $decoded = json_decode($response, true);
             if (!is_array($decoded)) {
                 $fail = "Invalid response from Telegram API";
                 break;

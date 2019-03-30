@@ -60,7 +60,7 @@ use donbidon\TunneledWebhooks\RunnerInterface;
  * ; Settings whatever your service needed...
  * ```
  *
- * @see ngrok
+ * @see Ngrok
  */
 interface ServiceInterface
 {

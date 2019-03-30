@@ -14,12 +14,12 @@ source[]   = "*"
 
 
 [app.service]
-class= "UT_Service"
+class= "UTService"
 
 
-[app.webhook.UT_Webhook_First.firstBot]
-class = "\\donbidon\\TunneledWebhooks\\Webhook\\Connector\\UT_Webhook_First"
+[app.webhook.UTWebhookFirst.firstBot]
+class = "\\donbidon\\TunneledWebhooks\\Webhook\\Connector\\UTWebhookFirst"
 
-[app.webhook.UT_Webhook_Second.firstBot]
+[app.webhook.UTWebhookSecond.firstBot]
 
-[app.webhook.UT_Webhook_Second.secondBot]
+[app.webhook.UTWebhookSecond.secondBot]
