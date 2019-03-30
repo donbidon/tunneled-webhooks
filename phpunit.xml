@@ -22,7 +22,7 @@
         <ini name="error_reporting" value="-1" />
     </php>
     <testsuites>
-        <testsuite name="Application Test Suite">
+        <testsuite name="Application">
             <directory>./tests/</directory>
         </testsuite>
     </testsuites>
