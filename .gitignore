@@ -3,9 +3,9 @@ composer.lock
 vendor/
 data/config.php
 
-# PHPUnit
+# Build
 .phpunit.result.cache
-coverage.xml
+build/logs/
 
 # Docs
 .phpdoc.local.cmd
@@ -14,3 +14,4 @@ coverage.xml
 .junk
 
 www/index.php
+www/com.telegram/bot.windbag.txt
