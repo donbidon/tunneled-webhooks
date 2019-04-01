@@ -7,7 +7,9 @@ vendor/
 build/output/
 
 # Docs
+.apigen.local.cmd
 .phpdoc.local.cmd
+apigen.yml
 
 .idea
 .junk
