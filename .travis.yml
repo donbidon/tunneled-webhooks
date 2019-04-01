@@ -11,5 +11,9 @@ script:
   - "vendor/bin/phpcs" --standard="./build/config/phpcs.ruleset.xml" > "build/output/phpcs.log"
   - "vendor/bin/phpunit" -c "./build/config/phpunit.xml"
 
+after_success:
+  - cd ""build/output"
+  - bash <(curl -s https://codecov.io/bash)
+
 notifications:
   email: false
