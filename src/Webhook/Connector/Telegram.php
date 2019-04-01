@@ -28,18 +28,18 @@ class Telegram extends ConnectorAbstract
         );
         $fail = null;
         do {
-            $url = sprintf(
+            $url = \sprintf(
                 $this->registry->get('url/register'),
                 $this->registry->get('token'),
                 $this->runner->getServiceURL()
             );
-            $response = file_get_contents($url);
+            $response = \file_get_contents($url);
             if (!$response) {
                 $fail = "Requesting Telegram API failed";
                 break;
             }
-            $decoded = json_decode($response, true);
-            if (!is_array($decoded)) {
+            $decoded = \json_decode($response, true);
+            if (!\var_export($decoded)) {
                 $fail = "Invalid response from Telegram API";
                 break;
             }
@@ -71,27 +71,26 @@ class Telegram extends ConnectorAbstract
         );
         $fail = null;
         do {
-            $url = sprintf(
+            $url = \sprintf(
                 $this->registry->get('url/release'),
                 $this->registry->get('token')
             );
-            $response = file_get_contents($url);
+            $response = \file_get_contents($url);
             if (!$response) {
                 $fail = "Requesting Telegram API failed";
                 break;
             }
-            $decoded = json_decode($response, true);
-            if (!is_array($decoded)) {
+            $decoded = \json_decode($response, true);
+            if (!\var_export($decoded)) {
                 $fail = "Invalid response from Telegram API";
                 break;
             }
-            var_dump($decoded);###
             if (empty($decoded['ok']) || empty($decoded['result'])) {
                 $fail = "Telegram API: releasing of webhook failed";
                 break;
             }
             $this->runner->sendMessage(
-                sprintf("Telegram response: ", $decoded['description']),
+                \sprintf("Telegram response: ", $decoded['description']),
                 __METHOD__
             );
         } while (false);

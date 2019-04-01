@@ -31,21 +31,21 @@ class Windbag extends HandlerAbstract
     public function run($path = null): void
     {
         $message = $this->io->receive();
-        if (is_null($message)) {
+        if (\is_null($message)) {
             return;
         }
 
-        mt_srand();
-        $messages = file_exists($path) ? file($path) : [];
-        $count = sizeof($messages);
+        \mt_srand();
+        $messages = \file_exists($path) ? \file($path) : [];
+        $count = \sizeof($messages);
         if ($count > 0) {
-            $index = mt_rand(0, $count - 1);
-            $reply = trim($messages[$index]);
+            $index = \mt_rand(0, $count - 1);
+            $reply = \trim($messages[$index]);
         } else {
             $reply = ":)";
         }
         $this->io->send($reply);
-        $messages[] = $message . PHP_EOL;
-        file_put_contents($path, implode("", $messages));
+        $messages[] = $message . \PHP_EOL;
+        \file_put_contents($path, \implode("", $messages));
     }
 }

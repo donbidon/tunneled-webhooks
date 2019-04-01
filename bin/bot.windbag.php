@@ -23,7 +23,7 @@ declare(strict_types=1);
 
 namespace donbidon\TunneledWebhooks\Webhook\Handler;
 
-error_reporting(E_ALL);
+\error_reporting(\E_ALL);
 require_once "../vendor/autoload.php";
 
 $registry =
@@ -35,7 +35,7 @@ $bot = new Windbag(new IO\Console($registry));
 /**
  * Path to "dictionary" file
  */
-$path = sprintf("./%s.txt", basename(__FILE__, ".php"));
+$path = \sprintf("./%s.txt", \basename(__FILE__, ".php"));
 
 while (true) {
     $bot->run($path);

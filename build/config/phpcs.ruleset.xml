@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<ruleset
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        name="PSR2+-"
+        xsi:noNamespaceSchemaLocation="../../vendor/squizlabs/php_codesniffer/phpcs.xsd"
+>
+    <description>The PSR-2+- coding standard.</description>
+
+    <config name="installed_paths" value="../../slevomat/coding-standard" />
+    <config name="ignore_errors_on_exit" value="1"/>
+
+    <arg value="sp" />
+
+    <file>../../src</file>
+    <file>../../bin</file>
+    <file>../../www</file>
+    <file>../../tests</file>
+
+    <rule ref="PSR2">
+        <exclude name="PSR2.ControlStructures.ControlStructureSpacing.SpacingAfterOpenBrace" />
+    </rule>
+
+    <rule ref="Squiz.Classes.ClassFileName.NoMatch" />
+    <!-- rule ref="Squiz.Commenting.ClosingDeclarationComment.Missing" /-->
+    <rule ref="Squiz.Commenting.FileComment.Missing" />
+    <rule ref="Squiz.Commenting.FunctionComment.Missing" />
+    <rule ref="Squiz.Commenting.ClassComment.Missing" />
+    <rule ref="Squiz.Functions.GlobalFunction.Found" />
+
+    <rule ref="Generic.Formatting.DisallowMultipleStatements.SameLine">
+        <exclude-pattern>*/data/*</exclude-pattern>
+        <exclude-pattern>*/tests/data/config.php</exclude-pattern>
+    </rule>
+
+    <rule ref="SlevomatCodingStandard">
+        <exclude name="SlevomatCodingStandard.Classes.SuperfluousAbstractClassNaming.SuperfluousSuffix" />
+        <exclude name="SlevomatCodingStandard.Classes.SuperfluousInterfaceNaming.SuperfluousSuffix" />
+        <exclude name="SlevomatCodingStandard.Classes.TraitUseSpacing.IncorrectLinesCountBeforeFirstUse" />
+        <exclude name="SlevomatCodingStandard.Commenting.DocCommentSpacing.IncorrectLinesCountBetweenDifferentAnnotationsTypes" />
+        <exclude name="SlevomatCodingStandard.Commenting.UselessInheritDocComment.UselessInheritDocComment" />
+        <exclude name="SlevomatCodingStandard.ControlStructures.ControlStructureSpacing.IncorrectLinesCountAfterControlStructure" />
+        <exclude name="SlevomatCodingStandard.ControlStructures.ControlStructureSpacing.IncorrectLinesCountBeforeControlStructure" />
+        <exclude name="SlevomatCodingStandard.ControlStructures.NewWithoutParentheses.UselessParentheses" />
+        <exclude name="SlevomatCodingStandard.ControlStructures.DisallowEmpty" />
+        <exclude name="SlevomatCodingStandard.ControlStructures.DisallowEqualOperators" />
+        <exclude name="SlevomatCodingStandard.ControlStructures.DisallowYodaComparison" />
+        <exclude name="SlevomatCodingStandard.ControlStructures.EarlyExit.EarlyExitNotUsed" />
+        <exclude name="SlevomatCodingStandard.ControlStructures.RequireMultiLineTernaryOperator" />
+        <exclude name="SlevomatCodingStandard.ControlStructures.RequireShortTernaryOperator" />
+        <exclude name="SlevomatCodingStandard.TypeHints.DeclareStrictTypes.IncorrectWhitespaceBetweenOpenTagAndDeclare" />
+        <exclude name="SlevomatCodingStandard.Types.EmptyLinesAroundTypeBraces.NoEmptyLineAfterOpeningBrace" />
+        <exclude name="SlevomatCodingStandard.Types.EmptyLinesAroundTypeBraces.NoEmptyLineBeforeClosingBrace" />
+        <exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameInAnnotation.NonFullyQualifiedClassName" />
+        <exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedExceptions.NonFullyQualifiedException" />
+        <exclude name="SlevomatCodingStandard.Namespaces.ReferenceUsedNamesOnly.ReferenceViaFullyQualifiedName" />
+        <exclude name="SlevomatCodingStandard.Namespaces.UseFromSameNamespace" />
+        <exclude name="SlevomatCodingStandard.Namespaces.UseOnlyWhitelistedNamespaces.NonFullyQualified" />
+        <exclude name="SlevomatCodingStandard.Variables.UselessVariable.UselessVariable" />
+    </rule>
+    <rule ref="SlevomatCodingStandard.Files.TypeNameMatchesFileName">
+        <properties>
+            <property name="rootNamespaces" type="array">
+                <element key="src" value="donbidon\TunneledWebhooks" />
+                <element key="tests" value="donbidon\TunneledWebhooks" />
+                <element key="tests/src" value="donbidon\TunneledWebhooks" />
+            </property>
+        </properties>
+    </rule>
+    <rule ref="SlevomatCodingStandard.TypeHints.DeclareStrictTypes">
+        <properties>
+            <property name="spacesCountAroundEqualsSign" value="0" />
+        </properties>
+        <exclude-pattern>*/tests/data/config.php</exclude-pattern>
+    </rule>
+
+</ruleset>

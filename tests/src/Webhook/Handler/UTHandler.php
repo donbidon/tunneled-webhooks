@@ -10,7 +10,6 @@ declare(strict_types=1);
 
 namespace donbidon\TunneledWebhooks\Webhook\Handler;
 
-use donbidon\Core\ExceptionExtended as ExceptionExtended;
 use donbidon\Core\Registry\UT_Recursive;
 
 /**
@@ -28,7 +27,7 @@ class UTHandler extends HandlerAbstract
      * @param IO\IOInterface $io
      *
      * @throws \ReflectionException  Risen from UT_Recursive::_get().
-     * @throws ExceptionExtended  Risen from T_Logger::log().
+     * @throws \donbidon\Core\ExceptionExtended  Risen from T_Logger::log().
      */
     public function __construct(IO\IOInterface $io)
     {
@@ -40,12 +39,13 @@ class UTHandler extends HandlerAbstract
     /**
      * {@inheritdoc}
      *
-     * @param string $options
+     * @param mixed $options
      *
-     * @throws ExceptionExtended  Risen from T_Logger::log().
+     * @throws \donbidon\Core\ExceptionExtended  Risen from T_Logger::log().
      */
     public function run($options = null): void
     {
+        $options; // to shut up code sniffer
         $message = $this->io->receive();
         $this->log($message, __METHOD__);
         $this->io->send("UT webhook handler message");

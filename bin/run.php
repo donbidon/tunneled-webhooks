@@ -22,18 +22,18 @@ declare(strict_types=1);
 
 namespace donbidon\TunneledWebhooks;
 
-error_reporting(E_ALL);
+\error_reporting(\E_ALL);
 /** @noinspection PhpIncludeInspection */
-require_once sprintf("%s/../vendor/autoload.php", __DIR__);
+require_once \sprintf("%s/../vendor/autoload.php", __DIR__);
 
 $output = [
     "Tunneled Webhooks",
     "",
 ];
 if (2 != $argc) {
-    $php = getenv('PHPBIN') ? getenv('PHPBIN') : "php";
+    $php = \getenv('PHPBIN') ? \getenv('PHPBIN') : "php";
     $output[] = "Starts tunneling service and register appropriate webhooks.";
-    $output[] = sprintf(
+    $output[] = \sprintf(
         "Usage: %s %s path/to/config",
         $php,
         $_SERVER['PHP_SELF']
@@ -41,7 +41,7 @@ if (2 != $argc) {
     $output[] = "";
 }
 
-echo implode(PHP_EOL, $output);
+echo \implode(\PHP_EOL, $output);
 if (2 != $argc) {
     die;
 }

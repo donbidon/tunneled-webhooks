@@ -10,11 +10,11 @@ declare(strict_types=1);
 
 namespace donbidon\TunneledWebhooks;
 
-use Exception;
+use donbidon\Core\Bootstrap;
+use donbidon\Core\Event\Args;
+use donbidon\Core\Log\T_Logger;
 use RuntimeException;
-use donbidon\Core\ExceptionExtended as ExceptionExtended;
-use donbidon\Core\Registry\I_Registry;
-use donbidon\TunneledWebhooks\Service\ServiceInterface;
+use Throwable;
 
 /**
  * Runs tunnelling service and registers webhooks.
@@ -69,11 +69,11 @@ use donbidon\TunneledWebhooks\Service\ServiceInterface;
  * ```ini
  * ; <?php die; __halt_compiler();
  *
- * [core.log.Stream.E_ALL]
+ * [core.log.Stream.\E_ALL]
  * stream = "php://output"
  * source[] = "*"
  *
- * ; [core.log.File.E_ALL]
+ * ; [core.log.File.\E_ALL]
  * ; source[] = "*"
  * ; path     = "/path/to/log"
  * ; rotation = 1
@@ -118,26 +118,26 @@ use donbidon\TunneledWebhooks\Service\ServiceInterface;
  */
 class Runner implements RunnerInterface
 {
-    use \donbidon\Core\Log\T_Logger;
+    use T_Logger;
 
     /**
      * Registry object
      *
-     * @var I_Registry
+     * @var \donbidon\Core\Registry\I_Registry
      */
     protected $registry;
 
     /**
      * Tunneling service object
      *
-     * @var ServiceInterface
+     * @var Service\ServiceInterface
      */
     protected $service;
 
     /**
      * Array of Webhook\Connector instances.
      *
-     * @var array
+     * @var Webhook\Connector\ConnectorInterface[]
      *
      * @see self::register()
      * @see self::handleShutdown()
@@ -149,21 +149,21 @@ class Runner implements RunnerInterface
      *
      * @param string $path  Path to config
      *
-     * @throws Exception
+     * @throws Throwable
      */
     public function __construct(string $path)
     {
-        $this->registry   = \donbidon\Core\Bootstrap::initByPath($path);
+        $this->registry   = Bootstrap::initByPath($path);
         $this->evtManager = $this->registry->get('core/event/manager');
-        $path = implode(DIRECTORY_SEPARATOR, [
-            dirname($path), "run.log"
+        $path = \implode(\DIRECTORY_SEPARATOR, [
+            \dirname($path), "run.log",
         ]);
         $this->evtManager->fire(
             ':updateLogRegistry:',
-            new \donbidon\Core\Event\Args([
+            new Args([
                 'conditions' => [
                     'name'  => "File",
-                    'level' => "E_ALL",
+                    'level' => "\E_ALL",
                 ],
                 'changes' => [
                     'path' => $path,
@@ -171,8 +171,8 @@ class Runner implements RunnerInterface
             ])
         );
 
-        if (function_exists('pcntl_signal')) {
-            pcntl_signal(SIGTERM, [$this, 'handleShutdown']);
+        if (\function_exists('pcntl_signal')) {
+            \pcntl_signal(\SIGTERM, [$this, 'handleShutdown']);
         }
 
         $this->run();
@@ -184,7 +184,7 @@ class Runner implements RunnerInterface
     public function getServiceURL(): string
     {
         return $this->service->getURL();
-    }
+    } //end getServiceURL()
 
     /**
      * {@inheritdoc}
@@ -192,12 +192,12 @@ class Runner implements RunnerInterface
      * @param string $message
      * @param string $source
      *
-     * @throws ExceptionExtended  Risen from \donbidon\Core\Log\T_Logger::log().
+     * @throws \donbidon\Core\ExceptionExtended  Risen from \donbidon\Core\Log\T_Logger::log().
      */
     public function sendMessage(string $message, string $source): void
     {
         $this->log($message, $source);
-    }
+    } //end sendMessage()
 
     /**
      * {@inheritdoc}
@@ -205,12 +205,12 @@ class Runner implements RunnerInterface
      * @param string $message
      * @param string $source
      *
-     * @throws ExceptionExtended  Risen from \donbidon\Core\Log\T_Logger::log().
+     * @throws \donbidon\Core\ExceptionExtended  Risen from \donbidon\Core\Log\T_Logger::log().
      */
     public function sendError(string $message, string $source): void
     {
         $this->service->stop($message);
-        $this->log($message, $source, E_ERROR);
+        $this->log($message, $source, \E_ERROR);
         exit(1);
     }
 
@@ -224,16 +224,18 @@ class Runner implements RunnerInterface
      */
     public function handleShutdown(/** @noinspection PhpUnusedParameterInspection */ int $number, $info = null): void
     {
-        foreach ($this->webhooks as /** @var Webhook\Connector\ConnectorInterface */$instance) {
+        $number; // to shut up code sniffer
+        $info; // to shut up code sniffer
+        foreach ($this->webhooks as $instance) {
             $instance->release();
         }
         $this->service->stop("Runner stopped");
-    }
+    } //end handleShutdown()
 
     /**
      * Main loop.
      *
-     * @throws Exception
+     * @throws Throwable
      *
      * @return void
      */
@@ -243,9 +245,9 @@ class Runner implements RunnerInterface
             $this->startService();
             $this->registerWebhooks();
             $this->infiniteLoop();
-        } catch (Exception $e) {
-            if (is_object($this->service)) {
-                $this->service->stop(sprintf(
+        } catch (Throwable $e) {
+            if (\is_object($this->service)) {
+                $this->service->stop(\sprintf(
                     "%s%s%s",
                     $e->getMessage(),
                     $e->getTraceAsString()
@@ -269,8 +271,8 @@ class Runner implements RunnerInterface
     {
         $registry = $this->registry->newFromKey('app/service');
         $service = $registry->get('class');
-        $class = false === strpos($service, "\\")
-            ? sprintf(
+        $class = false === \strpos($service, "\\")
+            ? \sprintf(
                 "\\donbidon\\TunneledWebhooks\\Service\\%s",
                 $service
             ) : $service;
@@ -279,7 +281,7 @@ class Runner implements RunnerInterface
          */
         $this->service = new $class($this, $registry);
         if (!($this->service instanceof Service\ServiceInterface)) {
-            throw new RuntimeException(sprintf(
+            throw new RuntimeException(\sprintf(
                 "Class %s has to implement %s",
                 $class,
                 Service\ServiceInterface::class
@@ -295,29 +297,29 @@ class Runner implements RunnerInterface
      *
      * @throws RuntimeException  If passed webhook doesn't implement
      *         Webhook\I_IO.
-     * @throws ExceptionExtended  Risen from self::sendMessage().
+     * @throws \donbidon\Core\ExceptionExtended  Risen from self::sendMessage().
      *
      * @see self::__construct()
      */
     protected function registerWebhooks(): void
     {
-        $webhooks = array_keys($this->registry->get('app/webhook'));
+        $webhooks = \array_keys($this->registry->get('app/webhook'));
         foreach ($webhooks as $webhook) {
-            $indexes = array_keys($this->registry->get(
-                sprintf('app/webhook/%s', $webhook)
+            $indexes = \array_keys($this->registry->get(
+                \sprintf('app/webhook/%s', $webhook)
             ));
             foreach ($indexes as $index) {
-                $section = sprintf('app/webhook/%s/%s', $webhook, $index);
+                $section = \sprintf('app/webhook/%s/%s', $webhook, $index);
                 $registry = $this->registry->newFromKey($section);
                 $class = $registry->get('class', null, false);
-                if (is_null($class)) {
-                    $class = sprintf(
+                if (\is_null($class)) {
+                    $class = \sprintf(
                         "\\donbidon\\TunneledWebhooks\\Webhook\\Connector\\%s",
                         $webhook
                     );
                 }
                 $this->log(
-                    sprintf("Processing '%s'...", $section),
+                    \sprintf("Processing '%s'...", $section),
                     __METHOD__
                 );
                 /**
@@ -325,7 +327,7 @@ class Runner implements RunnerInterface
                  */
                 $instance = new $class($this, $registry);
                 if (!($instance instanceof Webhook\Connector\ConnectorInterface)) {
-                    throw new RuntimeException(sprintf(
+                    throw new RuntimeException(\sprintf(
                         "Class %s has to implement %s",
                         $class,
                         Webhook\Connector\ConnectorInterface::class
@@ -349,12 +351,12 @@ class Runner implements RunnerInterface
         // $min = 0;
         while (true) {
             /*
-            $this->sendMessage(sprintf(
+            $this->sendMessage(\sprintf(
                 "Working for %d minutes...",
                 $min++
             ), __METHOD__);
             */
-            sleep(3600);
+            \sleep(3600);
         }
     }
 }

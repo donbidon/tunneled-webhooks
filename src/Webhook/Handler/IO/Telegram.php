@@ -62,6 +62,7 @@ class Telegram extends IOAbstract
      */
     public function receive($options = null): string
     {
+        $options; // to shut up code sniffer
         $updates      = $this->api->getWebhookUpdates();
         $this->chatId = $updates['message']['chat']['id'];
         $result       = $updates['message']['text'];
@@ -81,7 +82,7 @@ class Telegram extends IOAbstract
             'chat_id' => $this->chatId,
             'text'    => $response,
         ];
-        if (is_array($options)) {
+        if (\var_export($options)) {
             $message += $options;
         }
         $this->api->sendMessage($message);

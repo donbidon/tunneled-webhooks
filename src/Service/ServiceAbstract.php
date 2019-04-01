@@ -88,7 +88,7 @@ abstract class ServiceAbstract implements ServiceInterface
             __METHOD__
         );
         $pipes = [];
-        $this->process = proc_open(
+        $this->process = \proc_open(
             $this->registry->get('command'),
             [],
             $pipes,
@@ -98,8 +98,8 @@ abstract class ServiceAbstract implements ServiceInterface
                 'bypass_shell' => true,
             ]
         );
-        sleep((int)$this->registry->get('delay', 0));
-        $status = proc_get_status($this->process);
+        \sleep((int)$this->registry->get('delay', 0));
+        $status = \proc_get_status($this->process);
         if (empty($status['running'])) {
             $this->runner->sendError(
                 "Starting of tunneling service failed",
@@ -118,14 +118,14 @@ abstract class ServiceAbstract implements ServiceInterface
      *
      * @param string $reason
      */
-    public function stop(string $reason = null): void
+    public function stop(?string $reason = null): void
     {
-        if (is_resource($this->process)) {
-            proc_terminate($this->process);
-            proc_close($this->process);
+        if (\is_resource($this->process)) {
+            \proc_terminate($this->process);
+            \proc_close($this->process);
             $message = "Tunneling service stopped";
-            if (!is_null($reason)) {
-                $message = sprintf("%s: %s", $message, $reason);
+            if (!\is_null($reason)) {
+                $message = \sprintf("%s: %s", $message, $reason);
             }
             $this->runner->sendMessage($message, __METHOD__);
         }

@@ -88,7 +88,7 @@ interface ServiceInterface
      *
      * @return void
      */
-    public function stop(string $reason = null): void;
+    public function stop(?string $reason = null): void;
 
     /**
      * Returns service URL.

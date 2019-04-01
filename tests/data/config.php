@@ -1,4 +1,10 @@
-; <?php die; __halt_compiler();
+<?php
+/**
+ * Config file for tests.
+ */
+
+die; __halt_compiler();
+?>
 
 [defaults.log.format]
 E_ERROR   = "[ %LEVEL% ] [ %SOURCE% ] ~ %MESSAGE%"

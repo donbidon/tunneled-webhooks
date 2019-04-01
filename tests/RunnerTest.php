@@ -35,13 +35,13 @@ class RunnerTest extends \PHPUnit\Framework\TestCase
      */
     public function testRunner(): void
     {
-        ob_start();
-        $runner = new UTRunner(implode(
-            DIRECTORY_SEPARATOR,
+        \ob_start();
+        $runner = new UTRunner(\implode(
+            \DIRECTORY_SEPARATOR,
             [__DIR__, "data", "config.php"]
         ));
-        $actual = ob_get_clean();
-        $expected = implode(PHP_EOL, [
+        $actual = \ob_get_clean();
+        $expected = \implode(\PHP_EOL, [
             "[ note ] [ donbidon\TunneledWebhooks\Service\UTService::start ] ~ ",
             "[ note ] [ donbidon\TunneledWebhooks\Runner::registerWebhooks ] ~ " .
                 "Processing 'app/webhook/UTWebhookFirst/firstBot'...",

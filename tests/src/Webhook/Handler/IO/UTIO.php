@@ -10,10 +10,8 @@ declare(strict_types=1);
 
 namespace donbidon\TunneledWebhooks\Webhook\Handler\IO;
 
-use donbidon\Core\ExceptionExtended as ExceptionExtended;
 use donbidon\Core\Registry\I_Registry;
 use donbidon\Core\Registry\UT_Recursive;
-use donbidon\TunneledWebhooks\RunnerTest;
 
 /**
  * Webhook handling I/O class for unit testing.
@@ -30,7 +28,7 @@ class UTIO extends IOAbstract
      * @param I_Registry $registry
      *
      * @throws \ReflectionException  Risen from UT_Recursive::_get().
-     * @throws ExceptionExtended  Risen from T_Logger::log().
+     * @throws \donbidon\Core\ExceptionExtended  Risen from T_Logger::log().
      */
     public function __construct(I_Registry $registry)
     {
@@ -48,6 +46,7 @@ class UTIO extends IOAbstract
      */
     public function receive($options = null): string
     {
+        $options; // to shut up code sniffer
         return "UI external service message";
     }
 
@@ -57,10 +56,11 @@ class UTIO extends IOAbstract
      * @param string $response
      * @param mixed  $options   Options (not used_
      *
-     * @throws ExceptionExtended  Risen from T_Logger::log().
+     * @throws \donbidon\Core\ExceptionExtended  Risen from T_Logger::log().
      */
     public function send(string $response, $options = null): void
     {
+        $options; // to shut up code sniffer
         $this->log($response, __METHOD__);
     }
 }

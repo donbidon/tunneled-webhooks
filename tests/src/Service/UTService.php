@@ -32,9 +32,9 @@ class UTService extends ServiceAbstract
      *
      * @param string $reason
      */
-    public function stop(string $reason = null): void
+    public function stop(?string $reason = null): void
     {
-        if (is_null($reason)) {
+        if (\is_null($reason)) {
             $reason = "";
         }
         $this->runner->sendMessage($reason, __METHOD__);

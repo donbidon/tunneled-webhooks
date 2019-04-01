@@ -13,7 +13,7 @@ namespace donbidon\TunneledWebhooks\Webhook\Handler\IO;
 /**
  * Console "webhook" handling I/O class.
  *
- * Allows to receive from STDIN / send to output messages.<br />
+ * Allows to receive from \STDIN / send to output messages.<br />
  * Instance created in <a href="../files/bin.bot.windbag.html">Console windbag bot
  * </a>.<br />
  * See <a role="button" href="#source-view" data-toggle="modal"><i>source code</i></a>.
@@ -31,9 +31,10 @@ class Console extends IOAbstract
      */
     public function receive($options = null): string
     {
+        $options; // to shut up code sniffer
         echo $this->registry->get('prompt', "> ");
-        $result = trim(fgets(STDIN));
-        // sleep(1);
+        $result = \trim(\fgets(\STDIN));
+        // \sleep(1);
 
         return $result;
     }
@@ -46,6 +47,7 @@ class Console extends IOAbstract
      */
     public function send(string $response, $options = null): void
     {
-        echo $response, PHP_EOL;
+        $options; // to shut up code sniffer
+        echo $response, \PHP_EOL;
     }
 }

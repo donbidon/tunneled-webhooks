@@ -42,7 +42,7 @@ class UTRunner extends Runner
     public function sendError(string $message, string $source): void
     {
         $this->service->stop();
-        $this->log($message, $source, E_ERROR);
+        $this->log($message, $source, \E_ERROR);
     }
 
     /**

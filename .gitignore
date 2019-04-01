@@ -1,17 +1,15 @@
 # Composer
 composer.lock
 vendor/
-data/config.php
 
 # Build
 .phpunit.result.cache
-build/logs/
+build/output/
 
 # Docs
 .phpdoc.local.cmd
 
 .idea
 .junk
-
-www/index.php
+data/config.php
 www/com.telegram/bot.windbag.txt

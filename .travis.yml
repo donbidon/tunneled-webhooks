@@ -1,29 +1,15 @@
 language: php
+
 php:
-#  - 7.1
   - 7.2
-#  - nightly
-#  - hhvm
-
-#matrix:
-#  allow_failures:
-#    - php: nightly
-#    - php: hhvm
-#  fast_finish: true
-
-notifications:
-  on_success: never
-  on_failure: always
-
-git:
-  depth: 1
+#  - 7.3
 
 install:
-  - travis_retry composer install --prefer-dist --no-interaction
+  - travis_retry composer install --no-interaction --no-ansi --no-progress --no-suggest --prefer-source
 
-#script:
-#  - composer check-code
-#  - if [ "$TRAVIS_PHP_VERSION" == "7.2" ] ; then composer test-cov; else composer test; fi
+script:
+  - "vendor/bin/phpcs" --standard="./build/config/phpcs.ruleset.xml" > "build/output/phpcs.log"
+  - "vendor/bin/phpunit" -c "./build/config/phpunit.xml"
 
-#after_script:
-#  - if [ "$TRAVIS_PHP_VERSION" == "7.2" ]; then composer test-cov-upload; fi
+notifications:
+  email: false
