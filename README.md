@@ -18,7 +18,7 @@ Runs tunneling service and registers temporary webhooks for workstation having n
 
 You can add your own tunneling services, register and handle your own webhooks. 
 
-Look [API documentation](https://donbidon.github.io/docs/apps/tunneled-webhooks/).
+Look [API documentation](https://donbidon.github.io/docs/apps/tunneled-webhooks/) (v0.1.0).
 
 ## Installing
 
